@@ -1,0 +1,115 @@
+/* Global container for the Analytics page */
+.analytics-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f9f9f9;
+    min-height: 100vh; /* so it occupies full viewport if content is small */
+  }
+  
+  /* Page heading */
+  .analytics-heading {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #333;
+  }
+  
+  /* Each analytics section (e.g., By Short URL, By Topic, Overall) */
+  .analytics-section {
+    background-color: #fff;
+    margin-bottom: 40px;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    /* Subtle shadow for a slightly "lifted" look */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  }
+  
+  .analytics-section h2 {
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+    color: #333;
+  }
+  
+  /* Container for inputs / buttons */
+  .input-container {
+    margin-bottom: 15px;
+  }
+  
+  /* Text fields */
+  .analytics-input {
+    padding: 10px;
+    width: 300px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Buttons */
+  .analytics-button {
+    padding: 10px 15px;
+    background-color: #0066cc; /* Soft blue accent */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .analytics-button:hover {
+    background-color: #004b99;
+  }
+  
+  /* Cards showing the result of each analytics request */
+  .analytics-result-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 4px;
+    background-color: #fafafa;
+    /* Optional subtle shadow to differentiate cards */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  }
+  
+  /* The main IP summary table */
+  .ip-summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 0.95rem;
+  }
+  
+  .ip-summary-table th,
+  .ip-summary-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .ip-summary-table th {
+    background-color: #ebebeb;
+    color: #e34cf0;
+  }
+  
+  /* Error message styling */
+  .analytics-error {
+    color: #d9534f; /* A standard "danger" red */
+    margin-top: 20px;
+    font-weight: bold;
+  }
+  
+  /* Responsive adjustments for smaller screens */
+  @media (max-width: 600px) {
+    .analytics-input {
+      width: 100%;
+      margin: 5px 0;
+    }
+  
+    .analytics-button {
+      width: 100%;
+      margin-top: 8px;
+    }
+  }
+  
