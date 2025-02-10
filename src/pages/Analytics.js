@@ -445,7 +445,7 @@ function AllAnalytics() {
     const token = localStorage.getItem('token');
     if (!token) {
       setError('You are not logged in. Redirecting to login...');
-      setTimeout(() => navigate('/login'), 1500);
+      setTimeout(() => navigate('/'), 1500);
       return null;
     }
     return { Authorization: `Bearer ${token}` };
@@ -455,7 +455,7 @@ function AllAnalytics() {
   const handleError = (err) => {
     if (err.response?.status === 401) {
       setError('Session expired or unauthorized. Redirecting to login...');
-      setTimeout(() => navigate('/login'), 1500);
+      setTimeout(() => navigate('/'), 1500);
     } else {
       setError(err.response?.data?.error || 'Error fetching analytics.');
     }

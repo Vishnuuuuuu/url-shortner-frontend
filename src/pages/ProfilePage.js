@@ -12,7 +12,7 @@ function ProfilePage() {
     const token = localStorage.getItem('token');
     if (!token) {
       alert('You are not logged in. Redirecting to login...');
-      navigate('/login');
+      navigate('/');
       return;
     }
 
@@ -28,7 +28,7 @@ function ProfilePage() {
         console.error('Error fetching user details:', err);
         alert('Failed to fetch user details. Redirecting to login...');
         localStorage.removeItem('token');
-        navigate('/login');
+        navigate('/');
       }
     };
 
@@ -39,7 +39,7 @@ function ProfilePage() {
   const handleLogout = () => {
     localStorage.removeItem('token');  // Clear token from storage
     alert('Logged out successfully!');
-    navigate('/login');  // Redirect to login page
+    navigate('/');  // Redirect to login page
   };
 
   return (

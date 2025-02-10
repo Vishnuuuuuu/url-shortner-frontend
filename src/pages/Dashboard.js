@@ -144,7 +144,7 @@ function Dashboard() {
 
     if (!token) {
       showSnackbar('You are not logged in. Redirecting to login...', 'error');
-      setTimeout(() => navigate('/login'), 2000); // Redirect to login after 2 seconds
+      setTimeout(() => navigate('/'), 2000); // Redirect to login after 2 seconds
       return;
     }
 
@@ -160,7 +160,7 @@ function Dashboard() {
     } catch (error) {
       if (error.response && error.response.status === 401) {
         showSnackbar('Session expired. Redirecting to login...', 'error');
-        setTimeout(() => navigate('/login'), 2000);
+        setTimeout(() => navigate('/'), 2000);
       } else {
         showSnackbar(
           `Error shortening URL: ${error.response?.data?.error || 'Unknown error'}`,
