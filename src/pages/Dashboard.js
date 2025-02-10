@@ -232,7 +232,7 @@ function Dashboard() {
               className="analytics-btn"
               onClick={() => {
                 // Direct link to your analytics page
-                window.location.href = `http://localhost:3000/analytics?shortUrl=${shortUrl}`;
+                window.location.href = `https://url-shortner-backend.up.railway.app/analytics?shortUrl=${shortUrl}`;
               }}
             >
               View Analytics
