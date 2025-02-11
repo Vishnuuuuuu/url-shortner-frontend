@@ -147,13 +147,14 @@ function Dashboard() {
       setTimeout(() => navigate('/'), 2000); // Redirect to login after 2 seconds
       return;
     }
-
+ // Debug log to ensure values are correct
+ console.log('Debugging Values:', longUrl, customAlias, topic, token);
     try {
       const response = await axios.post(
-        'https://url-shortner-backend.up.railway.app/shorten',
-        // 'http://localhost:5000/shorten',
+        // 'https://url-shortner-backend.up.railway.app/shorten',
+        'http://localhost:5000/shorten',
         { longUrl, customAlias, topic },
-        console.log(longUrl,customAlias,topic),
+        
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
