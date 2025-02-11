@@ -151,6 +151,7 @@ function Dashboard() {
     try {
       const response = await axios.post(
         'https://url-shortner-backend.up.railway.app/shorten',
+        // 'http://localhost:5000/shorten',
         { longUrl, customAlias, topic },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -232,7 +233,7 @@ function Dashboard() {
               className="analytics-btn"
               onClick={() => {
                 // Direct link to your analytics page
-                window.location.href = `https://url-shortner-backend.up.railway.app/analytics?shortUrl=${shortUrl}`;
+                window.location.href = `https://url-shortner-frontend-mocha.vercel.app/analytics`;
               }}
             >
               View Analytics

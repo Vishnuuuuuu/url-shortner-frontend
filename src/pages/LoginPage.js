@@ -115,7 +115,7 @@ function LoginPage() {
       <img src={hackerLogo} alt="App Logo" className="login-logo" />
 
       {/* Title & Description */}
-      <h2 className="login-heading">Hacker's URL Shortener</h2>
+      <h2 className="login-heading"> URL Shortener</h2>
       <p className="login-description">
         Welcome to the Matrix of URL Shorteners—secure, efficient, and a bit rebellious.
       </p>

@@ -98,7 +98,7 @@
 
 //     try {
 //       const response = await axios.get(
-//         `https://url-shortner-backend.up.railway.app/api/analytics/${aliasInput}`,
+//         `http://localhost:5000api/analytics/${aliasInput}`,
 //         { headers }
 //       );
 //       setAliasAnalytics(response.data);
@@ -116,7 +116,7 @@
 
 //     try {
 //       const response = await axios.get(
-//         'https://url-shortner-backend.up.railway.app/api/analytics/overall',
+//         'http://localhost:5000api/analytics/overall',
 //         { headers }
 //       );
 //       setOverallAnalytics(response.data);
@@ -134,7 +134,7 @@
 
 //     try {
 //       const response = await axios.get(
-//         `https://url-shortner-backend.up.railway.app/api/analytics/topic/${topicInput}`,
+//         `http://localhost:5000api/analytics/topic/${topicInput}`,
 //         { headers }
 //       );
 //       setTopicAnalytics(response.data);
@@ -150,10 +150,10 @@
 //     const headers = getAuthHeaders();
 //     if (!headers) return;
 
-//     // e.g., shortUrl = "https://url-shortner-backend.up.railway.app/yesw"
+//     // e.g., shortUrl = "http://localhost:5000yesw"
 //     try {
 //       const response = await axios.get(
-//         `https://url-shortner-backend.up.railway.app/api/analytics/url?shortUrl=${encodeURIComponent(shortUrlInput)}`,
+//         `http://localhost:5000api/analytics/url?shortUrl=${encodeURIComponent(shortUrlInput)}`,
 //         { headers }
 //       );
 //       setShortUrlAnalytics(response.data);
@@ -217,7 +217,7 @@
 //         <div style={{ marginBottom: '10px' }}>
 //           <input
 //             type="text"
-//             placeholder="Enter full short URL (e.g., https://url-shortner-backend.up.railway.app/yesw)"
+//             placeholder="Enter full short URL (e.g., http://localhost:5000yesw)"
 //             value={shortUrlInput}
 //             onChange={(e) => setShortUrlInput(e.target.value)}
 //             style={{ padding: '8px', width: '400px', marginRight: '10px' }}
@@ -369,58 +369,61 @@ import { Link, useNavigate } from 'react-router-dom';
 import '../styles/analytics.css';
 
 // A reusable component to render IP summary in a table
+
 function IpSummaryTable({ ipSummary = [] }) {
   if (!ipSummary.length) {
     return <p>No IP data available.</p>;
   }
 
   return (
-    <table className="ip-summary-table">
-      <thead>
-        <tr>
-          <th>IP Address</th>
-          <th>Device</th>
-          <th>OS</th>
-          <th>Browser</th>
-          <th>Battery</th>
-          <th>Charging</th>
-          <th>City</th>
-          <th>Region</th>
-          <th>Country</th>
-          <th>ISP</th>
-          <th>Clicks</th>
-        </tr>
-      </thead>
-      <tbody>
-        {ipSummary.map((entry, idx) => {
-          const geoData = entry.geoData || {};
-          return (
-            <tr key={idx}>
-              <td>
-                <a
-                  href={`https://whatismyipaddress.com/ip/${entry.ip}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="click to get location"
-                >
-                  {entry.ip}
-                </a>
-              </td>
-              <td>{entry.device}</td>
-              <td>{entry.os}</td>
-              <td>{entry.browser || 'N/A'}</td>
-              <td>{entry.batteryPercentage}%</td>
-              <td>{entry.isCharging ? 'Yes' : 'No'}</td>
-              <td>{geoData.city || 'N/A'}</td>
-              <td>{geoData.region || 'N/A'}</td>
-              <td>{geoData.country || 'N/A'}</td>
-              <td>{geoData.isp || 'N/A'}</td>
-              <td>{entry.clicks}</td>
-            </tr>
-          );
-        })}
-      </tbody>
-    </table>
+    <div className="table-container"> {/* Added container for horizontal scroll */}
+      <table className="ip-summary-table">
+        <thead>
+          <tr>
+            <th>IP Address</th>
+            <th>Device</th>
+            <th>OS</th>
+            <th>Browser</th>
+            <th>Battery</th>
+            <th>Charging</th>
+            <th>City</th>
+            <th>Region</th>
+            <th>Country</th>
+            <th>ISP</th>
+            <th>Clicks</th>
+          </tr>
+        </thead>
+        <tbody>
+          {ipSummary.map((entry, idx) => {
+            const geoData = entry.geoData || {};
+            return (
+              <tr key={idx}>
+                <td>
+                  <a
+                    href={`https://whatismyipaddress.com/ip/${entry.ip}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="click to get location"
+                  >
+                    {entry.ip}
+                  </a>
+                </td>
+                <td>{entry.device}</td>
+                <td>{entry.os}</td>
+                <td>{entry.browser || 'N/A'}</td>
+                <td>{entry.batteryPercentage}%</td>
+                <td>{entry.isCharging ? 'Yes' : 'No'}</td>
+                <td>{geoData.city || 'N/A'}</td>
+                <td>{geoData.region || 'N/A'}</td>
+                <td>{geoData.country || 'N/A'}</td>
+                <td>{geoData.isp || 'N/A'}</td>
+                <td>{entry.clicks}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
   );
 }
 
@@ -540,7 +543,7 @@ function AllAnalytics() {
           <input
             className="analytics-input"
             type="text"
-            placeholder="Enter short URL, e.g. https://url-shortner-backend.up.railway.app/yesw"
+            placeholder="Enter short URL, e.g. https://url-shortner-backend.up.railway.app/tracker"
             value={shortUrlInput}
             onChange={(e) => setShortUrlInput(e.target.value)}
           />
