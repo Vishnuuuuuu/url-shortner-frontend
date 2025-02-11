@@ -357,7 +357,7 @@ function AllAnalytics() {
     const token = localStorage.getItem('token');
     if (!token) {
       showSnackbar('You are not logged in. Redirecting to login...', 'error');
-      setTimeout(() => navigate('/login'), 2000);
+      setTimeout(() => navigate('/'), 2000);
       return null;
     }
     return { Authorization: `Bearer ${token}` };
@@ -448,15 +448,14 @@ function AllAnalytics() {
      </p>
       {/** Snackbar for showing messages */}
       {snackbarMessage && <Snackbar message={snackbarMessage} type={snackbarType} />}
-
-      {/** Analytics sections */}
-      <section className="analytics-section">
-        <h2>1. Analytics by Full Short URL</h2>
-        <div className="input-container">
-          <input
+{/** ============== 1. By Full Short URL ============== */}
+//       <section className="analytics-section">
+//         <h2>1. Analytics by Full Short URL</h2>
+//         <div className="input-container">
+//           <input
             className="analytics-input"
             type="text"
-            placeholder="Enter short URL, e.g., https://url-shortner-backend.up.railway.app/tracker"
+            placeholder="Enter short URL, e.g. https://url-shortner-backend.up.railway.app/tracker"
             value={shortUrlInput}
             onChange={(e) => setShortUrlInput(e.target.value)}
           />
@@ -470,7 +469,11 @@ function AllAnalytics() {
             <h3>Alias: {shortUrlAnalytics.alias}</h3>
             <p>
               <strong>Long URL: </strong>
-              <a href={shortUrlAnalytics.longUrl} target="_blank" rel="noopener noreferrer">
+              <a
+                href={shortUrlAnalytics.longUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 {shortUrlAnalytics.longUrl}
               </a>
             </p>
@@ -478,13 +481,120 @@ function AllAnalytics() {
               <strong>Total Clicks: </strong>
               {shortUrlAnalytics.totalClicks}
             </p>
+
+            <h4>IP Summary:</h4>
+            <IpSummaryTable ipSummary={shortUrlAnalytics.ipSummary} />
           </div>
         )}
       </section>
 
-      {/** More analytics sections go here */}
+      {/** ============== 2. By Topic ============== */}
+      <section className="analytics-section">
+        <h2>2. Analytics by Topic</h2>
+        <div className="input-container">
+          <input
+            className="analytics-input"
+            type="text"
+            placeholder="Enter Topic (e.g., 'yt', 'sports', etc.)"
+            value={topicInput}
+            onChange={(e) => setTopicInput(e.target.value)}
+          />
+          <button className="analytics-button" onClick={fetchTopicAnalytics}>
+            Fetch by Topic
+          </button>
+        </div>
+
+        {topicAnalytics && (
+          <div>
+            <h3>Topic: {topicAnalytics.topic}</h3>
+            {topicAnalytics.urls.map((urlObj, index) => (
+              <div className="analytics-result-card" key={index}>
+                <h4>Alias: {urlObj.alias}</h4>
+                <p>
+                  <strong>Short URL: </strong>
+                  <a href={urlObj.shortUrl} target="_blank" rel="noopener noreferrer">
+                    {urlObj.shortUrl}
+                  </a>
+                </p>
+                <p>
+                  <strong>Long URL: </strong>
+                  <a href={urlObj.longUrl} target="_blank" rel="noopener noreferrer">
+                    {urlObj.longUrl}
+                  </a>
+                </p>
+                <p>
+                  <strong>Total Clicks: </strong>
+                  {urlObj.totalClicks}
+                </p>
+                {urlObj.ipSummary && urlObj.ipSummary.length > 0 && (
+                  <>
+                    <h5>IP Summary:</h5>
+                    <IpSummaryTable ipSummary={urlObj.ipSummary} />
+                  </>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
+      </section>
+
+      {/** ============== 3. Overall Analytics ============== */}
+      <section className="analytics-section">
+        <h2>3. Overall Analytics</h2>
+        <button className="analytics-button" onClick={fetchOverallAnalytics}>
+          Fetch Overall
+        </button>
+
+        {overallAnalytics && (
+          <div style={{ marginTop: '10px' }}>
+             <p className="analytics-summary">
+              <strong>Total URLs: </strong>
+              {overallAnalytics.totalUrls}
+            </p>
+            <p className="analytics-summary">
+              <strong>Total Clicks: </strong>
+              {overallAnalytics.totalClicks}
+            </p>
+            {overallAnalytics.urls.map((urlObj, index) => (
+              <div className="analytics-result-card" key={index}>
+                <h4>Alias: {urlObj.alias}</h4>
+                <p>
+                  <strong>Short URL: </strong>
+                  <a href={urlObj.shortUrl} target="_blank" rel="noopener noreferrer">
+                    {urlObj.shortUrl}
+                  </a>
+                </p>
+                <p>
+                  <strong>Long URL: </strong>
+                  <a href={urlObj.longUrl} target="_blank" rel="noopener noreferrer">
+                    {urlObj.longUrl}
+                  </a>
+                </p>
+                <p>
+                  <strong>Topic: </strong>
+                  {urlObj.topic}
+                </p>
+                <p>
+                  <strong>Clicks: </strong>
+                  {urlObj.clicks}
+                </p>
+                {urlObj.ipSummary && urlObj.ipSummary.length > 0 && (
+                  <>
+                    <h5>IP Summary:</h5>
+                    <IpSummaryTable ipSummary={urlObj.ipSummary} />
+                  </>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
+      </section>
+
+      {/* Display any errors */}
+      {error && <div className="analytics-error">{error}</div>}
     </div>
   );
 }
+
 
 export default AllAnalytics;
