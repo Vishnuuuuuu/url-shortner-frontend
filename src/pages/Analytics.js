@@ -373,6 +373,62 @@ function AllAnalytics() {
     }
   };
 
+  function IpSummaryTable({ ipSummary = [] }) {
+      if (!ipSummary.length) {
+        return <p>No IP data available.</p>;
+      }
+    
+      return (
+        <div className="table-container"> {/* Added container for horizontal scroll */}
+          <table className="ip-summary-table">
+            <thead>
+              <tr>
+                <th>IP Address</th>
+                <th>Device</th>
+                <th>OS</th>
+                <th>Browser</th>
+                <th>Battery</th>
+                <th>Charging</th>
+                <th>City</th>
+                <th>Region</th>
+                <th>Country</th>
+                <th>ISP</th>
+                <th>Clicks</th>
+              </tr>
+            </thead>
+            <tbody>
+              {ipSummary.map((entry, idx) => {
+                const geoData = entry.geoData || {};
+                return (
+                  <tr key={idx}>
+                    <td>
+                      <a
+                        href={`https://whatismyipaddress.com/ip/${entry.ip}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        title="click to get location"
+                      >
+                        {entry.ip}
+                      </a>
+                    </td>
+                    <td>{entry.device}</td>
+                    <td>{entry.os}</td>
+                    <td>{entry.browser || 'N/A'}</td>
+                    <td>{entry.batteryPercentage}%</td>
+                    <td>{entry.isCharging ? 'Yes' : 'No'}</td>
+                    <td>{geoData.city || 'N/A'}</td>
+                    <td>{geoData.region || 'N/A'}</td>
+                    <td>{geoData.country || 'N/A'}</td>
+                    <td>{geoData.isp || 'N/A'}</td>
+                    <td>{entry.clicks}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      );
+    }
   // ======== 1. By Full Short URL ========
   const fetchShortUrlAnalytics = async () => {
     setShortUrlAnalytics(null);
