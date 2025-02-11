@@ -153,6 +153,7 @@ function Dashboard() {
         'https://url-shortner-backend.up.railway.app/shorten',
         // 'http://localhost:5000/shorten',
         { longUrl, customAlias, topic },
+        console.log(longUrl,customAlias,topic),
         { headers: { Authorization: `Bearer ${token}` } }
       );
 

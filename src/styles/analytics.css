@@ -4,7 +4,7 @@
   margin: 0 auto;
   padding: 20px;
   font-family: 'Roboto', sans-serif;
-  background-color: #f9f9f9;
+  background-color: #f3efef;
   min-height: 100vh; /* so it occupies full viewport if content is small */
 }
 
@@ -13,7 +13,7 @@
   text-align: center;
   font-size: 2rem;
   margin-bottom: 30px;
-  color: #333;
+  color: #000000;
 }
 
 /* Each analytics section (e.g., By Short URL, By Topic, Overall) */
@@ -46,7 +46,7 @@
   padding: 10px;
   flex: 1;
   min-width: 250px;
-  border: 1px solid #ccc;
+  border: 1px solid #222121;
   border-radius: 4px;
 }
 
@@ -82,6 +82,13 @@
   border-collapse: collapse;
   margin-top: 10px;
   font-size: 0.95rem;
+}
+
+.analytics-summary {
+  color: #000; /* Force text to black */
+  font-size: 1.1rem; /* Make it more readable */
+  font-weight: 500;
+  margin-bottom: 10px;
 }
 
 .ip-summary-table th,
@@ -125,6 +132,12 @@
   padding: 8px;
   text-align: left;
   word-break: break-word; /* Allow wrapping of long text */
+  color: #000; /* Set table text to black */
+}
+
+/* Fix other sections of the dashboard */
+.analytics-result-card {
+  color: #000 !important;
 }
 
 .ip-summary-table th {
