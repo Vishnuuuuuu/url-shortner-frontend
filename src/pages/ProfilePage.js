@@ -18,7 +18,7 @@ function ProfilePage() {
 
     const fetchUserDetails = async () => {
       try {
-        const response = await axios.get('https://url-shortner-backend.up.railway.app/api/user', {
+        const response = await axios.get('https://url-backend.treehouselms.com/api/user', {
           headers: {
             Authorization: `Bearer ${token}`,
           },

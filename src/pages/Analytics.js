@@ -438,7 +438,7 @@ function AllAnalytics() {
 
     try {
       const response = await axios.get(
-        `https://url-shortner-backend.up.railway.app/api/analytics/url?shortUrl=${encodeURIComponent(shortUrlInput)}`,
+        `https://url-backend.treehouselms.com/api/analytics/url?shortUrl=${encodeURIComponent(shortUrlInput)}`,
         { headers }
       );
       setShortUrlAnalytics(response.data);
@@ -456,7 +456,7 @@ function AllAnalytics() {
 
     try {
       const response = await axios.get(
-        `https://url-shortner-backend.up.railway.app/api/analytics/topic/${topicInput}`,
+        `https://url-backend.treehouselms.com/api/analytics/topic/${topicInput}`,
         { headers }
       );
       setTopicAnalytics(response.data);
@@ -473,7 +473,7 @@ function AllAnalytics() {
     if (!headers) return;
 
     try {
-      const response = await axios.get('https://url-shortner-backend.up.railway.app/api/analytics/overall', {
+      const response = await axios.get('https://url-backend.treehouselms.com/api/analytics/overall', {
         headers,
       });
       setOverallAnalytics(response.data);
@@ -511,7 +511,7 @@ function AllAnalytics() {
 //           <input
             className="analytics-input"
             type="text"
-            placeholder="Enter short URL, e.g. https://url-shortner-backend.up.railway.app/tracker"
+            placeholder="Enter short URL, e.g. https://url-backend.treehouselms.com/tracker"
             value={shortUrlInput}
             onChange={(e) => setShortUrlInput(e.target.value)}
           />
