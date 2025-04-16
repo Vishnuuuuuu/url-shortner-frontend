@@ -92,7 +92,7 @@ function LoginPage() {
   const handleLoginSuccess = async (response) => {
     try {
       // const res = await axios.post('http://localhost:5000/api/auth/google', {
-        const res = await axios.post('http://68.233.107.177:5000/api/auth/google', {
+        const res = await axios.post('https://url-backend.treehouselms.com/api/auth/google', {
         token: response.credential,
       });
 
