@@ -1,212 +1,206 @@
-/* Global container for the Analytics page */
-.analytics-container {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 20px;
-  font-family: 'Roboto', sans-serif;
-  background-color: #f3efef;
-  min-height: 100vh; /* so it occupies full viewport if content is small */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+:root {
+  --bg-light: #f7f9fc;
+  --text-dark: #1f2937;
+  --text-muted: #6b7280;
+  --primary: #6366f1;
+  --primary-dark: #4f46e5;
+  --highlight: #e34cf0;
+  --card-bg: #ffffff;
+  --shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  --radius: 10px;
 }
 
-/* Page heading */
+/* General */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+}
+
+.analytics-container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  min-height: 100vh;
+}
+
 .analytics-heading {
   text-align: center;
-  font-size: 2rem;
-  margin-bottom: 30px;
-  color: #000000;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 25px;
 }
 
-/* Each analytics section (e.g., By Short URL, By Topic, Overall) */
 .analytics-section {
-  background-color: #fff;
-  margin-bottom: 40px;
-  border: 1px solid #ddd;
-  padding: 20px;
-  border-radius: 8px;
-  /* Subtle shadow for a slightly "lifted" look */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 25px;
+  margin-bottom: 30px;
+  box-shadow: var(--shadow);
+  animation: fadeIn 0.5s ease-in-out;
 }
 
 .analytics-section h2 {
-  margin-bottom: 15px;
-  font-size: 1.4rem;
-  color: #333;
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+  color: var(--primary-dark);
 }
 
-/* Container for inputs / buttons */
 .input-container {
-  margin-bottom: 15px;
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 12px;
+  margin-bottom: 15px;
 }
 
-/* Text fields */
 .analytics-input {
-  padding: 10px;
+  padding: 12px;
   flex: 1;
   min-width: 250px;
-  border: 1px solid #222121;
-  border-radius: 4px;
+  border: 1px solid #ccc;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
 }
 
-/* Buttons */
+.analytics-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  background-color: #fff;
+}
+
 .analytics-button {
-  padding: 10px 15px;
-  background-color: #0066cc; /* Soft blue accent */
+  padding: 12px 18px;
+  background-color: var(--primary);
   color: #fff;
   border: none;
-  border-radius: 4px;
+  border-radius: var(--radius);
   cursor: pointer;
+  font-size: 1rem;
   transition: background-color 0.3s ease-in-out;
 }
 
 .analytics-button:hover {
-  background-color: #004b99;
+  background-color: var(--primary-dark);
 }
 
-/* Cards showing the result of each analytics request */
 .analytics-result-card {
-  border: 1px solid #ccc;
-  padding: 10px;
-  margin: 10px 0;
-  border-radius: 4px;
-  background-color: #fafafa;
-  /* Optional subtle shadow to differentiate cards */
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-top: 15px;
+  box-shadow: var(--shadow);
 }
 
-/* The main IP summary table */
-.ip-summary-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 10px;
+.analytics-result-card h3,
+.analytics-result-card h4 {
+  color: var(--text-dark);
+  margin-bottom: 10px;
+}
+
+.analytics-result-card p {
+  color: var(--text-muted);
+  margin-bottom: 8px;
   font-size: 0.95rem;
 }
 
 .analytics-summary {
-  color: #000; /* Force text to black */
-  font-size: 1.1rem; /* Make it more readable */
+  font-size: 1.05rem;
   font-weight: 500;
+  color: var(--text-dark);
   margin-bottom: 10px;
 }
 
-.ip-summary-table th,
-.ip-summary-table td {
-  border: 1px solid #ccc;
-  padding: 8px;
-  text-align: left;
-}
-
-.ip-summary-table th {
-  background-color: #ebebeb;
-  color: #e34cf0;
-}
-
-/* Error message styling */
 .analytics-error {
-  color: #d9534f; /* A standard "danger" red */
+  color: #e11d48;
   margin-top: 20px;
-  font-weight: bold;
+  font-weight: 600;
+  font-size: 1rem;
 }
 
-/* Scrollable container for table on small screens */
 .table-container {
-  width: 100%;
   overflow-x: auto;
-  -webkit-overflow-scrolling: touch; /* Smooth scrolling on mobile */
   margin-top: 15px;
+  border-radius: var(--radius);
   border: 1px solid #ddd;
-  border-radius: 6px;
 }
 
 .ip-summary-table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 600px; /* Ensures a base width before shrinking */
+  min-width: 700px;
 }
 
 .ip-summary-table th,
 .ip-summary-table td {
   border: 1px solid #ccc;
-  padding: 8px;
+  padding: 10px;
   text-align: left;
-  word-break: break-word; /* Allow wrapping of long text */
-  color: #000; /* Set table text to black */
-}
-
-/* Fix other sections of the dashboard */
-.analytics-result-card {
-  color: #000 !important;
+  word-break: break-word;
+  font-size: 0.95rem;
+  color: var(--text-dark);
 }
 
 .ip-summary-table th {
   background-color: #ebebeb;
-  color: #e34cf0;
+  color: var(--highlight);
 }
 
-/* Responsive typography and padding */
-@media (max-width: 768px) {
-  .ip-summary-table th,
-  .ip-summary-table td {
-      padding: 6px;
-      font-size: 0.85rem;
+.ip-summary-table td a {
+  color: var(--primary-dark);
+  text-decoration: underline;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-/* Responsive adjustments for tablets and smaller screens */
+/* Responsive */
 @media (max-width: 768px) {
   .analytics-container {
-      padding: 10px;
+    padding: 20px;
   }
 
   .analytics-heading {
-      font-size: 1.8rem;
-  }
-
-  .analytics-section {
-      padding: 15px;
-  }
-
-  .analytics-section h2 {
-      font-size: 1.2rem;
+    font-size: 1.8rem;
   }
 
   .analytics-input {
-      min-width: 100%;
+    min-width: 100%;
   }
 
   .analytics-button {
-      width: 100%;
+    width: 100%;
   }
 
   .ip-summary-table th,
   .ip-summary-table td {
-      font-size: 0.85rem;
+    font-size: 0.85rem;
+    padding: 8px;
   }
 }
 
-/* Responsive adjustments for mobile devices */
 @media (max-width: 480px) {
   .analytics-heading {
-      font-size: 1.5rem;
+    font-size: 1.5rem;
   }
 
   .analytics-input {
-      width: 100%;
-      margin-bottom: 10px;
+    font-size: 0.9rem;
   }
 
   .analytics-button {
-      width: 100%;
-  }
-
-  .analytics-section {
-      padding: 10px;
-  }
-
-  .ip-summary-table th,
-  .ip-summary-table td {
-      padding: 6px;
+    font-size: 0.95rem;
   }
 }

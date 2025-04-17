@@ -1,4 +1,17 @@
-/* RESET / GLOBAL STYLES (optional) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+:root {
+  --bg-light: #f7f9fc;
+  --text-dark: #1f2937;
+  --text-muted: #6b7280;
+  --primary: #6366f1;
+  --primary-dark: #4f46e5;
+  --card-bg: #ffffff;
+  --shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  --radius: 12px;
+}
+
+/* Global Reset */
 * {
   margin: 0;
   padding: 0;
@@ -6,125 +19,184 @@
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
-  background: #f5f5f5;
-  color: #333;
+  font-family: 'Inter', sans-serif;
+  background: var(--bg-light);
+  color: var(--text-dark);
+  min-height: 100vh;
 }
 
-/* CONTAINER for entire dashboard page */
+/* Dashboard Container */
 .dashboard-container {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
-/* NAVBAR STYLES */
+/* Navbar */
 .navbar {
-  background-color: #333;
-  color: #fff;
-  padding: 15px 20px;
+  background: var(--primary);
+  color: white;
+  padding: 15px 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   position: sticky;
   top: 0;
   z-index: 10;
+  box-shadow: var(--shadow);
 }
 
 .navbar-logo {
-  font-size: 1.5rem;
-  font-weight: bold;
+  font-size: 1.7rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
 }
 
 .navbar-links {
   list-style-type: none;
   display: flex;
-  gap: 20px;
+  gap: 25px;
 }
 
 .navbar-links li a {
-  color: #fff;
+  color: #ffffff;
   text-decoration: none;
   font-weight: 500;
-  transition: color 0.3s ease-in-out;
+  font-size: 1rem;
+  transition: opacity 0.3s ease;
 }
 
 .navbar-links li a:hover {
-  color: #00b2ff;
+  opacity: 0.8;
 }
 
-/* MAIN CONTENT */
+/* Main Content */
 .main-content {
   flex: 1;
-  max-width: 800px;
+  max-width: 960px;
   width: 100%;
-  margin: 0 auto;
-  padding: 30px 20px;
-  background: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin: 30px auto;
+  padding: 30px 25px;
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  animation: fadeSlideIn 0.7s ease-in-out;
 }
 
-/* Title within main content */
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Title */
 .title {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  color: #333;
+  font-size: 2.2rem;
+  margin-bottom: 25px;
   text-align: center;
+  color: var(--text-dark);
   font-weight: 700;
 }
 
-/* Improved form container for responsive layout */
+/* Form Section */
 .form-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 20px;
-  justify-content: center;
   padding: 20px 0;
 }
 
-/* Input fields look balanced and consistent */
 .input-field {
   width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  padding: 14px;
   font-size: 1rem;
-  transition: border-color 0.3s ease;
+  border: 1px solid #d1d5db;
+  border-radius: var(--radius);
+  background: #f9fafb;
+  transition: border-color 0.3s;
 }
 
 .input-field:focus {
   outline: none;
-  border-color: #0052cc;
+  border-color: var(--primary);
+  background: #fff;
 }
 
-/* Buttons align nicely and are responsive */
+/* Shorten Button */
 .shorten-btn {
-  grid-column: span 2; /* Ensures button spans multiple columns on larger screens */
-  padding: 12px 20px;
-  background-color: #0052cc;
+  grid-column: span 2;
+  padding: 14px 20px;
+  background: var(--primary);
   color: #fff;
   border: none;
-  border-radius: 6px;
+  border-radius: var(--radius);
+  font-size: 1.1rem;
   cursor: pointer;
   text-align: center;
-  font-size: 1rem;
-  transition: background-color 0.3s ease-in-out;
+  transition: background 0.3s ease;
 }
 
 .shorten-btn:hover {
-  background-color: #003d99;
+  background: var(--primary-dark);
 }
 
-/* Adjustments for better small-screen responsiveness */
+/* Short URL Result */
+.short-url-result {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.short-url-result h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: var(--text-dark);
+}
+
+.short-url-result a {
+  display: inline-block;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+  color: var(--primary-dark);
+  word-break: break-word;
+}
+
+.short-url-result p {
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+/* Analytics Button */
+.analytics-btn {
+  padding: 10px 20px;
+  background: #10b981;
+  color: white;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.analytics-btn:hover {
+  background: #059669;
+}
+
+/* Snackbar can be styled separately if needed */
+
+/* Mobile Responsive */
 @media (max-width: 768px) {
   .form-container {
-      grid-template-columns: 1fr;
-      gap: 15px;
+    grid-template-columns: 1fr;
   }
 
   .shorten-btn {
-      grid-column: span 1; /* Button takes full width on small screens */
-      width: 100%;
+    grid-column: span 1;
+    width: 100%;
   }
 }

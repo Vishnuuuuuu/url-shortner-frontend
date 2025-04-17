@@ -1,57 +1,59 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../styles/profile.css'; // Ensure you create and import this CSS file
+import '../styles/profile.css';
+import Snackbar from './Snackbar'; // Ensure this path is correct
 
 function ProfilePage() {
   const [user, setUser] = useState({});
+  const [snackbarMessage, setSnackbarMessage] = useState('');
+  const [snackbarType, setSnackbarType] = useState('');
   const navigate = useNavigate();
 
-  // Fetch user details from the server or localStorage
+  const showSnackbar = (message, type) => {
+    setSnackbarMessage(message);
+    setSnackbarType(type);
+    setTimeout(() => setSnackbarMessage(''), 3000); // Hide after 3s
+  };
+
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      alert('You are not logged in. Redirecting to login...');
-      navigate('/');
+    const name = localStorage.getItem('name');
+    const email = localStorage.getItem('email');
+
+    if (!name || !email) {
+      showSnackbar('Not logged in. Redirecting...', 'error');
+      setTimeout(() => navigate('/'), 2000);
       return;
     }
 
-    const fetchUserDetails = async () => {
-      try {
-        const response = await axios.get('https://url-backend.treehouselms.com/api/user', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setUser(response.data);
-      } catch (err) {
-        console.error('Error fetching user details:', err);
-        alert('Failed to fetch user details. Redirecting to login...');
-        localStorage.removeItem('token');
-        navigate('/');
-      }
-    };
-
-    fetchUserDetails();
+    setUser({ username: name, email });
   }, [navigate]);
 
-  // Handle Logout
   const handleLogout = () => {
-    localStorage.removeItem('token');  // Clear token from storage
-    alert('Logged out successfully!');
-    navigate('/');  // Redirect to login page
+    localStorage.clear();
+    showSnackbar('Logged out successfully!', 'success');
+    setTimeout(() => navigate('/'), 2000);
   };
 
   return (
     <div className="profile-container">
-      <h1>Welcome, {user.username || 'User'}!</h1>
+      <h1 className="profile-heading">Welcome, {user.username || 'User'}!</h1>
+
       <div className="profile-card">
-        <p><strong>Username:</strong> {user.username || 'N/A'}</p>
-        <p><strong>Email:</strong> {user.email || 'N/A'}</p>
+        <p><strong>Username:</strong> {user.username}</p>
+        <p><strong>Email:</strong> {user.email}</p>
       </div>
+
       <button className="logout-button" onClick={handleLogout}>
         Logout
       </button>
+
+      <button className="back-button" onClick={() => navigate('/dashboard')}>
+        ← Back to Dashboard
+      </button>
+
+      {snackbarMessage && (
+        <Snackbar message={snackbarMessage} type={snackbarType} />
+      )}
     </div>
   );
 }

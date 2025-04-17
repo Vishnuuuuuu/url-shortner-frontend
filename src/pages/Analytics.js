@@ -505,10 +505,10 @@ function AllAnalytics() {
       {/** Snackbar for showing messages */}
       {snackbarMessage && <Snackbar message={snackbarMessage} type={snackbarType} />}
 {/** ============== 1. By Full Short URL ============== */}
-//       <section className="analytics-section">
-//         <h2>1. Analytics by Full Short URL</h2>
-//         <div className="input-container">
-//           <input
+      <section className="analytics-section">
+         <h2>1. Analytics by Full Short URL</h2>
+      <div className="input-container">
+         <input
             className="analytics-input"
             type="text"
             placeholder="Enter short URL, e.g. https://url-backend.treehouselms.com/tracker"
