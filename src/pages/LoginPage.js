@@ -32,12 +32,12 @@ function LoginPage() {
       localStorage.setItem('name', user.name || 'User');
       localStorage.setItem('email', user.email);
 
-      console.log('🔐 Login success:', user);
+      //console.log('🔐 Login success:', user);
       showSnackbar('Login successful!', 'success');
 
       setTimeout(() => navigate('/dashboard'), 1500);
     } catch (err) {
-      console.error('❌ Login failed', err);
+      //console.error('❌ Login failed', err);
       showSnackbar('Login failed. Please try again.', 'error');
     }
   };

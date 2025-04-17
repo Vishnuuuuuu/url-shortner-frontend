@@ -148,7 +148,7 @@ function Dashboard() {
       return;
     }
  // Debug log to ensure values are correct
- console.log('Debugging Values:', longUrl, customAlias, topic, token);
+ //console.log('Debugging Values:', longUrl, customAlias, topic, token);
     try {
       const response = await axios.post(
         'https://url-backend.treehouselms.com/shorten',
